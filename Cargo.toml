@@ -10,7 +10,7 @@ zeroize = { version = "1.3", features = ["zeroize_derive"] }
 rand = "0.8"
 
 crypto_algorithms = { version = "0.1", git = "https://github.com/franziskuskiefer/algorithm-identifiers-rs.git", branch = "main"}
-key_store = { version = "0.1", path = "../key-store" }
+key_store = { version = "0.1", git = "https://github.com/franziskuskiefer/key-store-rs.git", branch = "reorg" }
 tls_codec = { version = "0.1", git = "https://github.com/openmls/tls-codec.git", branch = "main", features = ["derive"] }
 # Serialization
 serde = { version = "1.0", features = ["derive"], optional = true }
