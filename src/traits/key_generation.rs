@@ -1,10 +1,10 @@
 use crypto_algorithms::{AsymmetricKeyType, SymmetricKeyType};
 use key_store::types::Status;
 
-use crate::{errors::Error, hash::Hash, types::keys::PublicKey};
+use crate::{errors::Error, hash::Hash, types::keys::PublicKey, Supports};
 
 /// Generate keys.
-pub trait GenerateKeys: Hash {
+pub trait GenerateKeys: Hash + Supports {
     /// The key store type used for `Seal`.
     type KeyStoreType;
 
@@ -12,7 +12,6 @@ pub trait GenerateKeys: Hash {
     type KeyStoreIndex;
 
     fn new_secret(
-        &self,
         key_store: &Self::KeyStoreType,
         key_type: SymmetricKeyType,
         status: Status,
@@ -23,7 +22,6 @@ pub trait GenerateKeys: Hash {
     /// Generate a new key pair and return the [`PublicKey`] as well as the
     /// identifier of the private key in the key store.
     fn new_key_pair(
-        &self,
         key_store: &Self::KeyStoreType,
         key_type: AsymmetricKeyType,
         status: Status,

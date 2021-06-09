@@ -9,10 +9,10 @@ pub mod signature;
 
 /// Check whether the key store supports certain functionality.
 pub trait Supports {
-    fn symmetric_key_types(&self) -> Vec<SymmetricKeyType>
+    fn symmetric_key_types() -> Vec<SymmetricKeyType>
     where
         Self: Sized;
-    fn asymmetric_key_types(&self) -> Vec<AsymmetricKeyType>
+    fn asymmetric_key_types() -> Vec<AsymmetricKeyType>
     where
         Self: Sized;
 }

@@ -7,10 +7,10 @@ pub trait Hash {
     type StatefulHasher;
 
     /// Single-shot hash
-    fn hash(&self, hash: HashType, data: &[u8]) -> Result<Vec<u8>, Error>;
+    fn hash(hash: HashType, data: &[u8]) -> Result<Vec<u8>, Error>;
 
     /// Get a stateful hasher object for the streaming API.
-    fn hasher(&self, hash: HashType) -> Result<Self::StatefulHasher, Error>
+    fn hasher(hash: HashType) -> Result<Self::StatefulHasher, Error>
     where
         Self: Sized;
 }

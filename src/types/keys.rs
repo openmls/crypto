@@ -22,21 +22,6 @@ use zeroize::Zeroize;
 
 use crate::errors::Error;
 
-/// # AsymmetricKeyError
-///
-/// This error is thrown when an asymmetric key operation fails.
-#[derive(Debug, PartialEq, Eq)]
-pub enum AsymmetricKeyError {
-    /// The key type is not supported.
-    InvalidKeyType(usize),
-
-    /// The key serialization is not valid.
-    InvalidSerialization,
-
-    /// An error in the underlying crypto library occurred.
-    CryptoLibError(String),
-}
-
 /// # Public key
 ///
 /// A public key is a byte vector with an associated `AsymmetricKeyType` and an

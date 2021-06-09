@@ -1,8 +1,8 @@
 use crypto_algorithms::HashType;
 
-use crate::errors::Error;
+use crate::{errors::Error, keys::PublicKey};
 
-type Signature = Vec<u8>;
+pub type Signature = Vec<u8>;
 
 pub trait Sign {
     /// The key store type used for `Seal`.
@@ -27,10 +27,16 @@ pub trait Verify {
     type KeyStoreIndex;
 
     fn verify(
-        &self,
+        key_store: &Self::KeyStoreType,
         key_id: &Self::KeyStoreIndex,
         signature: &[u8],
         payload: &[u8],
+        hash: impl Into<Option<HashType>>,
     ) -> Result<(), Error>;
-    fn verify_with_pk(&self, key: &[u8], signature: &[u8], payload: &[u8]) -> Result<(), Error>;
+    fn verify_with_pk(
+        key: &PublicKey,
+        signature: &[u8],
+        payload: &[u8],
+        hash: impl Into<Option<HashType>>,
+    ) -> Result<(), Error>;
 }
