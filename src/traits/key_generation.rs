@@ -1,10 +1,10 @@
 use crypto_algorithms::{AsymmetricKeyType, SymmetricKeyType};
 use key_store::types::Status;
 
-use crate::{errors::Error, hash::Hash, types::keys::PublicKey, Supports};
+use crate::{errors::Error, types::keys::PublicKey, Supports};
 
 /// Generate keys.
-pub trait GenerateKeys: Hash + Supports {
+pub trait GenerateKeys: Supports {
     /// The key store type used for `Seal`.
     type KeyStoreType;
 

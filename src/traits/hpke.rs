@@ -1,4 +1,4 @@
-use crypto_algorithms::{AeadType, KdfType};
+use crypto_algorithms::{AeadType, KdfType, KemType};
 
 use crate::{errors::Error, keys::PublicKey};
 
@@ -29,7 +29,6 @@ pub trait HpkeSeal {
 
     /// Encrypt the `payload` to the public `key`.
     fn hpke_seal_to_pk(
-        key_store: &Self::KeyStoreType,
         kdf: KdfType,
         aead: AeadType,
         key: &PublicKey,
@@ -75,7 +74,7 @@ pub trait HpkeOpen {
         aead: AeadType,
         key_id: &Self::KeyStoreIndex,
         cipher_text: &[u8],
-        kem: &KemOutput,
+        kem: &[u8],
         info: &[u8],
         aad: &[u8],
     ) -> Result<Plaintext, Error>;
@@ -92,11 +91,10 @@ pub trait HpkeDerive {
     /// Derive a new HPKE keypair from the secret at `ikm_id`.
     fn derive_key_pair(
         key_store: &Self::KeyStoreType,
-        kem: KdfType,
+        kem: KemType,
         kdf: KdfType,
         aead: AeadType,
         ikm_id: &Self::KeyStoreIndex,
-        private_key_id: &Self::KeyStoreIndex,
         label: &[u8],
-    ) -> Result<PublicKey, Error>;
+    ) -> Result<(PublicKey, Self::KeyStoreIndex), Error>;
 }
