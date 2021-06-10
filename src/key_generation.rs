@@ -1,15 +1,21 @@
 use crypto_algorithms::{AsymmetricKeyType, SymmetricKeyType};
 use key_store::types::Status;
 
-use crate::{errors::Error, types::keys::PublicKey, Supports};
+use crate::Supports;
 
 /// Generate keys.
 pub trait GenerateKeys: Supports {
-    /// The key store type used for `Seal`.
+    /// The key store type used for [`GenerateKeys`].
     type KeyStoreType;
 
     /// The type of the key store id used, i.e. the type for indexing the database.
     type KeyStoreIndex;
+
+    /// The type of the public key generated and returned.
+    type PublicKey;
+
+    /// The error type returned by [`GenerateKeys`].
+    type Error;
 
     fn new_secret(
         key_store: &Self::KeyStoreType,
@@ -17,7 +23,7 @@ pub trait GenerateKeys: Supports {
         status: Status,
         k: &Self::KeyStoreIndex,
         label: &[u8],
-    ) -> Result<(), Error>;
+    ) -> Result<(), Self::Error>;
 
     /// Generate a new key pair and return the [`PublicKey`] as well as the
     /// identifier of the private key in the key store.
@@ -26,5 +32,5 @@ pub trait GenerateKeys: Supports {
         key_type: AsymmetricKeyType,
         status: Status,
         label: &[u8],
-    ) -> Result<(PublicKey, Self::KeyStoreIndex), Error>;
+    ) -> Result<(Self::PublicKey, Self::KeyStoreIndex), Self::Error>;
 }
