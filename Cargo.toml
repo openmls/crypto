@@ -16,9 +16,6 @@ tls_codec = { version = "0.1", git = "https://github.com/openmls/tls-codec.git",
 serde = { version = "1.0", features = ["derive"], optional = true }
 serde_json = { version = "1.0", optional = true }
 
-[patch.'https://github.com/openmls/tls-codec.git']
-tls_codec = { path = "../tls-codec/tls_codec" }
-
 [features]
 serialization = ["serde", "serde_json", "tls_codec/serde_serialize"]
 hazmat = [] # ☣️ enable unsafe features
