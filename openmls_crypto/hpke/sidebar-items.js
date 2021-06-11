@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["HpkeDerive","XXX: We really only need the KEM type here. But hpke-rs needs all of it"],["HpkeOpen",""],["HpkeSeal","HPKE Note that his trait only holds a very limited subset of HPKE. Only single-shot, base-mode HPKE is supported for now."]]});
