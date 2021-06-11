@@ -1,7 +1,7 @@
 //! # OpenMLS Crypto traits
 //!
 //! This crate defines traits abstracting the crypto primitives used by OpenMLS.
-//! The traits are defined to be used with a [`key_store`] implementation but
+//! The traits are defined to be used with a [`key_store`](https://github.com/franziskuskiefer/key-store-rs) implementation but
 //! do not necessarily have to use one.
 
 use crypto_algorithms::{AsymmetricKeyType, SymmetricKeyType};

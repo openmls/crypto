@@ -45,19 +45,19 @@ pub trait Seal {
 
 /// AEAD Open
 pub trait Open {
-    /// The key store type used for `Open`.
+    /// The key store type used for [`Open`].
     type KeyStoreType;
 
     /// The type of the key store id used, i.e. the type for indexing the database.
     type KeyStoreIndex;
 
-    /// The error type returned by [`Seal`].
+    /// The error type returned by [`Open`].
     type Error;
 
-    /// The ciphertext and tag input type of [`Seal::open()`].
+    /// The ciphertext and tag input type of [`Open::open()`].
     type CiphertextTag;
 
-    /// The plaintext return type of [`Seal::open()`].
+    /// The plaintext return type of [`Open::open()`].
     type Plaintext;
 
     /// Decrypt the `cipher_text` with the given parameters and return the plain

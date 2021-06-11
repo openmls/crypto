@@ -5,7 +5,7 @@ pub trait Hash {
     /// The return type of [`Hash::hasher()`], a stateful hasher.
     type StatefulHasher;
 
-    /// The error type returned by [`Seal`].
+    /// The error type returned by [`Hash`].
     type Error;
 
     /// The return type of the [`Hash::hash`] function.
@@ -22,7 +22,7 @@ pub trait Hash {
 
 /// Streaming API for hashing
 pub trait Hasher {
-    /// The error type returned by [`Seal`].
+    /// The error type returned by [`Hasher`].
     type Error;
 
     /// The return type of the [`Hasher::finish`] function.

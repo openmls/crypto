@@ -12,7 +12,7 @@ pub trait HkdfDerive {
     /// The type of the secrets used in HKDF.
     type Secret;
 
-    /// The error type returned by [`Seal`].
+    /// The error type returned by [`HkdfDerive`].
     type Error;
 
     /// HKDF

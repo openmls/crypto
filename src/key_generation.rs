@@ -25,7 +25,7 @@ pub trait GenerateKeys: Supports {
         label: &[u8],
     ) -> Result<(), Self::Error>;
 
-    /// Generate a new key pair and return the [`PublicKey`] as well as the
+    /// Generate a new key pair and return the [`GenerateKeys::PublicKey`] as well as the
     /// identifier of the private key in the key store.
     fn new_key_pair(
         key_store: &Self::KeyStoreType,
