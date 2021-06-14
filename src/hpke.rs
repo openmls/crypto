@@ -3,7 +3,7 @@ use crypto_algorithms::{AeadType, KdfType, KemType};
 /// HPKE
 /// Note that his trait only holds a very limited subset of HPKE.
 /// Only single-shot, base-mode HPKE is supported for now.
-pub trait HpkeSeal {
+pub trait HpkeSeal<'a> {
     /// The key store type used for [`HpkeSeal`].
     type KeyStoreType;
 
@@ -33,7 +33,7 @@ pub trait HpkeSeal {
         key_id: &Self::KeyStoreIndex,
         info: &[u8],
         aad: &[u8],
-        payload: &Self::Plaintext,
+        payload: Self::Plaintext,
     ) -> Result<(Self::Ciphertext, Self::KemOutput), Self::Error>;
 
     /// Encrypt the `payload` to the public `key`.
@@ -43,7 +43,7 @@ pub trait HpkeSeal {
         key: &Self::PublicKey,
         info: &[u8],
         aad: &[u8],
-        payload: &Self::Plaintext,
+        payload: Self::Plaintext,
     ) -> Result<(Self::Ciphertext, Self::KemOutput), Self::Error>;
 
     /// Encrypt the secret stored for `secret_id` to the public key stored for `key_id`.
